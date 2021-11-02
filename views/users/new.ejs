@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nouvel utilisateur</title>
+</head>
+<body>
+    <h1>nouvel utilisateur</h1>
+    <form action="./create" method="post" enctype="multipart/form-data">
+      <input type="text" name="pseudo" placeholder="pseudo" required autofocus><br>
+      <input type="email" name="email" placeholder="email" required><br>
+      <input type="password" name="password" placeholder="password" required><br>
+      <button type="submit" >create</button>
+    </form>
+    <script type="text/javascript">
+      document.querySelector('form').addEventListener('submit', async e => {
+        e.preventDefault()
+        try {
+          document.querySelector('button').style.display = 'none'
+          const body = new FormData(document.querySelector('form'))
+          const json = await (await fetch('./create', {method: 'post', body})).json()
+          console.log('json ', json);
+        } catch (e) {
+          console.warn(e);
+        } finally {
+          document.querySelector('button').style.display = 'block'
+        }
+      })
+    </script>
+</body>
+</html>
