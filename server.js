@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 app.use(cors())
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 
 app.get('/', (req, res) => res.send('You reached the root url'))
 //app.get('/dl', (req, res) => res.download('relative/path/to/file'))
